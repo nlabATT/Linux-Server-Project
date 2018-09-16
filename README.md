@@ -3,49 +3,71 @@
 ### Project Overview
 You will take a baseline installation of a Linux server and prepare it to host your web applications. You will secure your server from a number of attack vectors, install and configure a database server, and deploy one of your existing web applications onto it.
 
-!!!
 __IP Address__ : 34.235.148.10
 __ssh Port__ : 2200
 __URL__: 34.235.148.10.xip.io
 
 ## Step by Step Walkthrough in completing this project:
-Source and References:
-[Amazon Web Services(https://aws.amazon.com/) 
+__Source and References:__
+
+[Amazon Web Services](https://aws.amazon.com/)
+
+[Link to Putty Installer](https://www.putty.org/)
+
+[Udacity Configuring Linux Server][https://classroom.udacity.com/courses/ud299]
+
+[How to Access a Remote Server and Edit Files][https://www.youtube.com/watch?v=HcwK8IWc-a8]
+
+[Linux Command Line Basics][https://classroom.udacity.com/courses/ud595-nd]
+
+[Linux Web Server Basics][https://classroom.udacity.com/courses/ud299-nd]
+
+[github:Stueken Linux-Server-Configuration-Project][https://github.com/stueken/FSND-P5_Linux-Server-Configuration]
+
+[DigitalOcean][https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps] 
 
 
 1. To start you'll need a Linux server instance. __Udacity__ recommend using ___AWS Lightsail___. If you don't already have an Amazon Web Services account, you'll need to set one up.
 	
   Start a new Ubuntu Linux server instance on Amazon Lightsail
 
-  a. Log in!
+-  a. __Log in__!
      First, log in to Lightsail. If you don't already have an Amazon Web Services account, you'll be prompted to create one.
 
-  b. Create an instance.
+-  b.__Create an instance__.
      A Lightsail instance is a Linux server running on a virtual machine inside an Amazon datacenter.
 
-  c. Choose an instance image: Ubuntu
-     For this project, you'll want a plain Ubuntu Linux image. There are two settings to make here. First, choose "OS Only". Second, choose Ubuntu as the operating system.
+-  c. Choose an instance image: __Ubuntu__
+     For this project, you'll want a plain __Ubuntu Linux image__. There are two settings to make here. First, choose "__OS Only__". Second, choose __Ubuntu__ as the operating system.
 
-  d. Choose your instance plan.
+-  d. Choose your __instance plan__.
      For this project, I pick the lowest one to get free-tier access.
 
-  e. Give your instance a name.
-     Every instance needs a unique hostname.
+-  e. Give your __instance a name__.
+     Every instance needs a unique name.
 
-  f. Wait for it to start up.
-     While your instance is starting up, Lightsail shows you a grayed-out display.
-     Once your instance is running, the display gets brighter.
+-  f. Wait for it to start up.
+     While your instance is _starting up_, Lightsail shows you a grayed-out display.
+     Once your instance is _running_, the display gets brighter.
+
 
 2. Secure and Set-up server.
-__Source__:[Link to Putty Installer][https://www.putty.org/]
+__Source__:
+[Link to Putty Installer][https://www.putty.org/]
+
 __Helpful Resources__:
+
 [Udacity Configuring Linux Server][https://classroom.udacity.com/courses/ud299]
+
 [How to Access a Remote Server and Edit Files][https://www.youtube.com/watch?v=HcwK8IWc-a8]
-[Linux Command Line Basics][https://classroom.udacity.com/courses/ud595-nd]  
+
+[Linux Command Line Basics][https://classroom.udacity.com/courses/ud595-nd]
+
 [Linux Web Server Basics][https://classroom.udacity.com/courses/ud299-nd]
 
-  a. Once familiar with the ssh basics.
-		a.1. Update all currently installed packages.
+
+-  a. Once familiar with the ssh basics.
++		a.1. Update all currently installed packages.
         $ sudo apt-get update
         $ sudo apt-get dist-upgrade
         $ sudo apt-get install unattended-upgrades
@@ -53,11 +75,11 @@ __Helpful Resources__:
         $ sudo reboot --> run when needed or you see a message needed to 
           restart after logging in to ubuntu thru ssh.
 
-	  a.2. Create custom SSH port 2200 in AWS lightsail
-    a.3. Create custom NTP port 123/UDP in AWS lightsail
++	  a.2. Create custom SSH port 2200 in AWS lightsail
++    a.3. Create custom NTP port 123/UDP in AWS lightsail
 
-  b. Setting up new User 
-  	b.1. Create new user account named grader
+-  b. Setting up new User 
++  	b.1. Create new user account named grader
 	      $ sudo adduser grader 
 	
         other helpful commands:
