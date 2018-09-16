@@ -27,7 +27,7 @@ __Source and References:__
 [DigitalOcean][https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps] 
 
 
-1. To start you'll need a Linux server instance. __Udacity__ recommend using ___AWS Lightsail___. If you don't already have an Amazon Web Services account, you'll need to set one up.
+* 1. To start you'll need a Linux server instance. __Udacity__ recommend using ___AWS Lightsail___. If you don't already have an Amazon Web Services account, you'll need to set one up.
 	
   Start a new Ubuntu Linux server instance on Amazon Lightsail
 
@@ -51,7 +51,7 @@ __Source and References:__
      Once your instance is _running_, the display gets brighter.
 
 
-2. Secure and Set-up server.
+* 2. Secure and Set-up server.
 __Source__:
 [Link to Putty Installer][https://www.putty.org/]
 
