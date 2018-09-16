@@ -4,214 +4,251 @@
 You will take a baseline installation of a Linux server and prepare it to host your web applications. You will secure your server from a number of attack vectors, install and configure a database server, and deploy one of your existing web applications onto it.
 
 !!!
+__IP Address__ : 34.235.148.10
+__ssh Port__ : 2200
+__URL__: 34.235.148.10.xip.io
 
 ## Step by Step Walkthrough in completing this project:
-
-1. To start you'll need a Linux server instance. Udacity recommend using Amazon Lightsail. If you don't already have an Amazon Web Services account, you'll need to set one up. [https://aws.amazon.com]
-	Start a new Ubuntu Linux server instance on Amazon Lightsail
-
-1. Log in!
-First, log in to Lightsail. If you don't already have an Amazon Web Services account, you'll be prompted to create one.
-
-Amazon Web Services login page
-
-2. Create an instance.
-Once you're logged in, Lightsail will give you a friendly message with a robot on it, prompting you to create an instance. A Lightsail instance is a Linux server running on a virtual machine inside an Amazon datacenter.
-
-Lightsail screenshot: No instances
-When you have no instances, Lightsail gives you a picture of an orange robot and suggests that you create an instance.
-
-3. Choose an instance image: Ubuntu
-Lightsail supports a lot of different instance types. An instance image is a particular software setup, including an operating system and optionally built-in applications.
-
-For this project, you'll want a plain Ubuntu Linux image. There are two settings to make here. First, choose "OS Only" (rather than "Apps + OS"). Second, choose Ubuntu as the operating system.
-
-Lightsail setup: Pick your instance image (Ubuntu)
-When you create an instance, Lightsail asks what kind you want.
-For this project, choose an "OS Only" instance with Ubuntu.
-
-4. Choose your instance plan.
-The instance plan controls how powerful of a server you get. It also controls how much money they want to charge you. For this project, the lowest tier of instance is just fine. And as long as you complete the project within a month and shut your instance down, the price will be zero.
-
-Lightsail setup: Pricing options. (Choose $5/month with first month free.)
-Lightsail's options for instance pricing.
-For this project, pick the lowest one to get free-tier access.
-
-Be aware: If you enable additional features in Lightsail, you may be charged extra for them.
-
-5. Give your instance a hostname.
-Every instance needs a unique hostname. You can use any name you like, as long as it doesn't have spaces or unusual characters in it. Your instance's name will be visible to you and to the project reviewer.
-
-Lightsail setup: Setting a name for your instance.
-I've named my instance silly-name-here.
-
-6. Wait for it to start up.
-It may take a few minutes for your instance to start up.
-
-Lightsail: Instance starting.
-While your instance is starting up, Lightsail shows you a grayed-out display.
-
-Lightsail: Instance running.
-Once your instance is running, the display gets brighter.
-
-7. It's running; let's use it!
-Once your instance has started up, you can log into it with SSH from your browser.
+Source and References:
+[Amazon Web Services(https://aws.amazon.com/) 
 
 
-
-2. Setting up ssh and terminal emulator putty.
-
-	a. link to putty installer
-	b. helpful resources https://www.youtube.com/watch?v=HcwK8IWc-a8
-	c. https://classroom.udacity.com/courses/ud595-nd  Linux Command Line Basics
-	d. https://classroom.udacity.com/courses/ud299-nd Linux Web Server Basics
-
-3. Once familiar with the ssh basics.
+1. To start you'll need a Linux server instance. __Udacity__ recommend using ___AWS Lightsail___. If you don't already have an Amazon Web Services account, you'll need to set one up.
 	
-	a. Update all currently installed packages.
-	b. Change the SSH port from 22 to 2200. Not to forget to configure the Lightsail firewall to allow it.
-	c. Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).
+  Start a new Ubuntu Linux server instance on Amazon Lightsail
 
+  a. Log in!
+     First, log in to Lightsail. If you don't already have an Amazon Web Services account, you'll be prompted to create one.
 
-4. Setting up new User 
+  b. Create an instance.
+     A Lightsail instance is a Linux server running on a virtual machine inside an Amazon datacenter.
 
-	a. Create new user account named grader and setup permission
+  c. Choose an instance image: Ubuntu
+     For this project, you'll want a plain Ubuntu Linux image. There are two settings to make here. First, choose "OS Only". Second, choose Ubuntu as the operating system.
+
+  d. Choose your instance plan.
+     For this project, I pick the lowest one to get free-tier access.
+
+  e. Give your instance a name.
+     Every instance needs a unique hostname.
+
+  f. Wait for it to start up.
+     While your instance is starting up, Lightsail shows you a grayed-out display.
+     Once your instance is running, the display gets brighter.
+
+2. Secure and Set-up server.
+__Source__:[Link to Putty Installer][https://www.putty.org/]
+__Helpful Resources__:
+[Udacity Configuring Linux Server][https://classroom.udacity.com/courses/ud299]
+[How to Access a Remote Server and Edit Files][https://www.youtube.com/watch?v=HcwK8IWc-a8]
+[Linux Command Line Basics][https://classroom.udacity.com/courses/ud595-nd]  
+[Linux Web Server Basics][https://classroom.udacity.com/courses/ud299-nd]
+
+  a. Once familiar with the ssh basics.
+		a.1. Update all currently installed packages.
+        $ sudo apt-get update
+        $ sudo apt-get dist-upgrade
+        $ sudo apt-get install unattended-upgrades
+        $ sudo dpkg-reconfigure -plow unattended-upgrades
+        $ sudo reboot --> run when needed or you see a message needed to 
+          restart after logging in to ubuntu thru ssh.
+
+	  a.2. Create custom SSH port 2200 in AWS lightsail
+    a.3. Create custom NTP port 123/UDP in AWS lightsail
+
+  b. Setting up new User 
+  	b.1. Create new user account named grader
+	      $ sudo adduser grader 
 	
-	sudo adduser grader --> creates user grader, enter your chosen password and filled misc info when desired.
-	other commands:
-	sudo ls /etc/sudoers
-	sudo ls /etc/sudoers.d
-	sudo adduser grader
-	sudo cp /etc/sudoers.d/vagrant /etc/sudoers.d/grader
-	sudo nano /etc/sudoers.d/grader
-	sudo passwd -e student
+        other helpful commands:
+	      $ sudo ls /etc/sudoers
+	      $ sudo ls /etc/sudoers.d
+        $ sudo cp /etc/sudoers.d/ubuntu /etc/sudoers.d/grader
+        $ sudo nano /etc/sudoers.d/grader
+        $ sudo passwd -e grader
 
-	b. Create an SSH key pair for grader using the ssh-keygen tool.
+    _Note_: read __b.2__ to support some commands above.
+          : link above ___Configuring Linux Server___ is very helpful     
 
-	ssh-keygen
+	  b.2. Create an SSH key pair for grader using the ssh-keygen tool.
+        
+         __Useful commands:__
+        $ ssh grader@your-public-IP-address -p 2200
+        _Note:_ before using ___ssh___ to user grader temporarily activate Password Authentication and set it to __yes__
+        $ sudo service sshd restart --> command to activate changes done to 
+          file __sshd_config__ 
+        $ sudo nano /etc/ssh/sshd_config
+        $ mkdir .ssh
+        $ touch .ssh/authorized_keys
+        $ nano .ssh/authorized_keys
+        $ chmod 700 .ssh
+        $ chmod 644 .ssh/authorized_keys
+        $ ssh -i ~/.ssh/private-filename-created-from-ssh-keygen
+          grader@your public-IP-address -p 2200 
+        $ chgrp root .bashrc
 
-	other useful commands:
-	ssh grader@18.223.228.41 -p 2200
-	mkdir .ssh
-	touch .ssh/authorized_keys
-	nano .ssh/authorized_keys
-	chmod 700 .ssh
-	chmod 644 .ssh/authorized_keys
-	ssh grader@34.235.148.10 -p 2200 -i ~/.ssh/mygrader
-	ssh -i ~/.ssh/mygrader * ubuntu@34.235.148.10:/home/ubuntu/catalog  -p 2200 
-	
-	vi /etc/ssh/sshd_config
-	sudo nano /etc/ssh/sshd_config
-	PermitRootLogin from without-password to no
-	sudo chgrp root .bashrc
-	service sshd restart
+  c. Configure the Uncomplicated Firewall (UFW)    
+        $ sudo ufw status
+        $ sudo ufw default deny incoming
+        $ sudo ufw default allow outgoing
+        $ sudo ufw allow 2200/tcp
+        $ sudo ufw allow www
+        $ sudo ufw allow ntp/udp
+        $ sudo ufw enable
 
-	sudo ufw status
-	sudo ufw default deny incoming
-	sudo ufw default allow outgoing
-	sudo ufw allow ssh
-	sudo ufw allow 2200/tcp
-	sudo ufw allow www
-	sudo ufw enable
+  d. Configure the local timezone to UTC.
+  __Resource:__ [github:Stueken Linux-Server-Configuration-Project][https://github.com/stueken/FSND-P5_Linux-Server-Configuration]
+        Open the timezone selection dialog:
+        $ sudo dpkg-reconfigure tzdata
+        Then chose 'None of the above', then UTC.
+        *Setup the ntp daemon ntpd for regular and improving time sync:
+        $ sudo apt-get install ntp
+        *Chose closer NTP time servers:
+        Open the NTP configuration file:
+        $ sudo nano /etc/ntp.conf
+        Open [http://www.pool.ntp.org/en/] and choose the pool zone closest to you and replace the given servers with the new server list.
+        9 - Install and configure Apache to serve a Python mod_wsgi application
 
-	sudo apt-get update
-	sudo apt-get dist-upgrade
+  e. Set Server to not accept root login.
 
-	$ sudo apt-get install unattended-upgrades
-	$ sudo dpkg-reconfigure -plow unattended-upgrades
+        $ sudo nano /etc/ssh/sshd_config
 
-	PermitRootLogin from without-password to no
-
-5. Configure the local timezone to UTC.
-Open the timezone selection dialog:
-$ sudo dpkg-reconfigure tzdata
-Then chose 'None of the above', then UTC.
-*Setup the ntp daemon ntpd for regular and improving time sync:
-$ sudo apt-get install ntp
-*Chose closer NTP time servers:
-Open the NTP configuration file:
-$ sudo vim /etc/ntp.conf
-Open http://www.pool.ntp.org/en/ and choose the pool zone closest to you and replace the given servers with the new server list.
-9 - Install and configure Apache to serve a Python mod_wsgi application
-
-sudo reboot
+        PermitRootLogin from ___old_value___ to __no__
+        $ sudo service sshd restart
 
 
-Prepare Web Application Server: Thru prepared SSH connection.
+3. Prepare Web Application Server:
+__Source:__ [DigitalOcean][https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps] 
 
-6. Install and configure Apache to serve a Python mod_wsgi application.
+  a. Install and configure Apache to serve a Python mod_wsgi application.
 
-sudo apt-get install apache2
+    $ sudo apt-get install apache2
 
-Verify Apache is working by visiting 
+    Verify Apache is working by visiting below in your browser 
 
-http://localhost:8080 or alternately
-http://your_public_address_from_Linux server instance
+    [http://localhost] or alternately
+    [http://your_public_address_from_Linux_server_instance]
 
-you should see the Apache Ubuntu Default page
+    you should see the Apache Ubuntu Default page
 
-Once Apache is installed you can now configure to perform more.
-
-If you built your project with Python 3, you will need to install the Python 3 mod_wsgi package on your server: 
-
-sudo apt-get install libapache2-mod-wsgi
-
-Or if you are working with Python 3
-
-sudo apt-get install libapache2-mod-wsgi-py3
-
-by default you can edit 
-
-sudo nano /etc/apache2/sites-enabled/000-default.conf 
-
-or alternately make your own configuration
-
-sudo nano /etc/apache2/sites-available/catalog.conf
-/var/www/html/myapp.wsgi
-
-Enable mod_wsgi: $ sudo a2enmod wsgi.
-$ sudo service apache2 start.
-sudo apache2ctl restart
-
-7. Copy you own Application created from Lesson 3 "Catalog Project" or use Github 
-and clone to desired directory
+    $ sudo apt-get install libapache2-mod-wsgi-py3  
 
 
-to   Install and configure PostgreSQL:
+    Once Apache is installed you can now configure to perform more.
 
-Do not allow remote connections
-Create a new database user named catalog that has limited permissions to your catalog application database.
-12. Install git.
+  by Default:
+            /var/www/html   --> html page and wsgi files 
+            /etc/apache2/sites-enabled/000-default.conf
+    
+      $ sudo nano /etc/apache2/sites-enabled/000-default.conf 
+      when performing test changes from default
+      $ sudo apache2ctl restart --> to restart default configuration
 
-Deploy the Item Catalog project.
-13. Clone and setup your Item Catalog project from the Github repository you created earlier in this Nanodegree program.
-14. Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser. Make sure that your .git directory is not publicly accessible via a browser!
+      ### or alternately make your own configuration
 
-!!!!!!
+      $ sudo nano /etc/apache2/sites-available/catalog.conf
+```sample catalog.conf
+          <VirtualHost *:80>
+                ServerName 34-235-148-10
+                ServerAdmin admin@34.235.148.10
+                WSGIDaemonProcess movieproject user=ubuntu group=ubuntu threads=5 home=/var/www/catalog/
+                WSGIScriptAlias / /var/www/catalog/catalog.wsgi
+                <Directory /var/www/catalog>
+                    WSGIProcessGroup movieproject
+                    WSGIApplicationGroup %{GLOBAL}
+                    WSGIScriptReloading On
+                    Require all granted
+           </VirtualHost>
+```
 
+      $ sudo nano /var/www/catalog/catalog.wsgi      
+```sample wsgi file
+            #!/usr/bin/python
+            
+            import sys
+            sys.path.insert(0,"/var/www/catalog/")
+            
+            from movieproject import app as application
+```
+__Note:__ very important to match the value of movieproject to your python application filename and point to the correct directory where the application is located.
 
-Submission
-Please follow these steps to properly submit this project:
+      $ sudo a2enmod wsgi --> to enable wsgi
+      $ sudo a2enmod catalog --> to enable catalog
+      $ sudo service apache2 restart --> to restart catalog configuration
+      $ sudo apache2ctl restart --> to restart configuration
 
-Create a new GitHub repository and add a file named README.md.
+  b. Install and configure PostgreSQL
+  __Source:__ [Stueken Github Project][https://github.com/stueken/FSND-P5_Linux-Server-Configuration]   
+              [Stackoverflow Sqlalchemy][https://stackoverflow.com/questions/22353512/how-to-install-sqlalchemy-on-ubuntu] 
+      Install PostgreSQL:
+      $ sudo apt-get install postgresql postgresql-contrib
+      Check that no remote connections are allowed (default):
+      $ sudo nano /etc/postgresql/9.5/main/pg_hba.conf  --> verify folder what 
+                                                            version
+      Open the database setup file:
+      $ sudo nano movie_database_setup.py
+      Change the line starting with "engine": 
+        format : engine = create_engine('postgresql://_user:password@localhost/dbname_)
+        ex. engine = create_engine('postgresql://catalog:PW-FOR-DB@localhost/catalog')
+      Create needed linux user for psql:
+      $ sudo adduser catalog (choose a password)
+      Login to database with superuser postgres:
+      $ sudo su - postgres
+      Connect to the system:
+      $ psql
+      Add postgres user with password:
+      Create user with LOGIN role and set a password:
+      # CREATE USER catalog WITH PASSWORD 'PW-FOR-DB'; (# stands for the command prompt in psql)
+      Allow the user to create database tables:
+      # ALTER USER catalog CREATEDB;
+      *List current roles and their attributes: # \du
+      Create database:
+      # CREATE DATABASE catalog WITH OWNER catalog;
+      Connect to the database catalog # \c catalog
+      Revoke all rights:
+      # REVOKE ALL ON SCHEMA public FROM public;
+      Grant only access to the catalog role:
+      # GRANT ALL ON SCHEMA public TO catalog;
+      Exit out of PostgreSQl and the postgres user:
+      # \q, then $ exit
+      Create postgreSQL database schema:
+      $ python movie_database_setup.py
 
-Your README.md file should include all of the following:
-i. The IP address and SSH port so your server can be accessed by the reviewer.
-ii. The complete URL to your hosted web application.
-iii. A summary of software you installed and configuration changes made.
-iv. A list of any third-party resources you made use of to complete this project.
+  c. Copy you own Application created from Lesson 3 "Catalog Project" or use Github and clone to desired directory
+    _format_: $ scp -i ~/.ssh/privatekey -P 2200 files-to-copy ubuntu@your-IP-adress:/var/www/catalog
+      $ scp -i ~/.ssh/privatekey -P 2200 * ubuntu@34.235.148.10:/var/www/catalog
+      $ cd catalog 
+      $ sudo mkdir static templates
 
-Locate the SSH key you created for the grader user.
+  d. Install virtual environment, Flask and the project's dependencies
+  _Note:_ Change directory to Application folder ex. /var/www/catalog
+      Install pip, the tool for installing Python packages: 
+      $ sudo apt-get install python-pip.
+      If virtualenv is not installed, use pip to install it using the following command: 
+      $ sudo pip install virtualenv.
+      Create new virtual environment with the following command: 
+      $ sudo virtualenv venv.
+      Activate the virtual environment: 
+      $ source venv/bin/activate.
+      Change permissions to the virtual environment folder: 
+      $ sudo chmod -R 777 venv.
+      Install Flask: 
+      $ pip install Flask.
+      $ pip install bleach
+      $ pip install httplib2
+      $ pip install requests
+      $ pip install oauth2client
+      $ pip install sqlalchemy or 
+      $ sudo easy_install sqlalchemy
+      $ pip install python-psycopg2
 
-During the submission process, paste the contents of the grader user's SSH key into the "Notes to Reviewer" field.
+4. Be ready to Start Application
 
-When you're ready to submit your project, click here and follow the instructions. Due to the high volume of submissions we receive, please allow up up to 7 business days for your evaluation to be returned.
+  a. Restart configuration
+     $ sudo apache2ctl restart restart configuration
+  b. Verify ErrorLog for troubleshooting when App do not work
+     sudo cat /var/log/apache2/error.log
 
-If you are having any problems submitting your project or wish to check up on the status of your evaluation, please email us at **fullstack-project@udacity.com**.
+5. Do not be discourage when get stuck it is an oppurtunity to learn.
 
-Next Steps
-You will get an email as soon as your reviewer has feedback for you. Congratulations on making it this far in the Nanodegree! You're almost finished!
-
-You have not submitted the project yet
-
-
+# Have fun fun fun !!!!!
