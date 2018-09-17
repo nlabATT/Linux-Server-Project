@@ -8,23 +8,23 @@ __ssh Port__ : 2200
 __URL__: 34.235.148.10.xip.io
 
 ## Step by Step Walkthrough in completing this project:
-__Source and References:__
+__Sources and References:__
 
-		[Amazon Web Services](https://aws.amazon.com/)
+[Amazon Web Services](https://aws.amazon.com/)
 
-		[Link to Putty Installer](https://www.putty.org/)
+[Link to Putty Installer](https://www.putty.org/)
 
-		[Udacity Configuring Linux Server][https://classroom.udacity.com/courses/ud299]
+[Udacity Configuring Linux Server](https://classroom.udacity.com/courses/ud299)
 
-		[How to Access a Remote Server and Edit Files][https://www.youtube.com/watch?v=HcwK8IWc-a8]
+[How to Access a Remote Server and Edit Files](https://www.youtube.com/watch?v=HcwK8IWc-a8)
 
-		[Linux Command Line Basics][https://classroom.udacity.com/courses/ud595-nd]
+[Linux Command Line Basics](https://classroom.udacity.com/courses/ud595-nd)
 
-		[Linux Web Server Basics][https://classroom.udacity.com/courses/ud299-nd]
+[Linux Web Server Basics](https://classroom.udacity.com/courses/ud299-nd)
 
-		[github:Stueken Linux-Server-Configuration-Project][https://github.com/stueken/FSND-P5_Linux-Server-Configuration]
+[github:Stueken Linux-Server-Configuration-Project](https://github.com/stueken/FSND-P5_Linux-Server-Configuration)
 
-		[DigitalOcean][https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps] 
+[DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps) 
 
 
 1. To start you'll need a Linux server instance. __Udacity__ recommend using ___AWS Lightsail___. If you don't already have an Amazon Web Services account, you'll need to set one up.
@@ -50,15 +50,15 @@ __Source and References:__
 
 __Helpful Resource__:
 
-		[Link to Putty Installer](https://www.putty.org/)
+[Link to Putty Installer](https://www.putty.org/)
 
-		[Udacity Configuring Linux Server](https://classroom.udacity.com/courses/ud299)
+[Udacity Configuring Linux Server](https://classroom.udacity.com/courses/ud299)
 
-		[How to Access a Remote Server and Edit Files](https://www.youtube.com/watch?v=HcwK8IWc-a8)
+[How to Access a Remote Server and Edit Files](https://www.youtube.com/watch?v=HcwK8IWc-a8)
 
-		[Linux Command Line Basics](https://classroom.udacity.com/courses/ud595-nd)
+[Linux Command Line Basics](https://classroom.udacity.com/courses/ud595-nd)
 
-		[Linux Web Server Basics](https://classroom.udacity.com/courses/ud299-nd)
+[Linux Web Server Basics](https://classroom.udacity.com/courses/ud299-nd)
 
 
 	a. Once familiar with the ssh basics.
@@ -112,8 +112,10 @@ __Helpful Resource__:
 		$ sudo ufw enable
 
 	d. Configure the local timezone to UTC.
-	
-		__Source:__ [github:Stueken Linux-Server-Configuration-Project](https://github.com/stueken/FSND-P5_Linux-Server-Configuration)
+
+   __Source:__
+
+   [github:Stueken Linux-Server-Configuration-Project](https://github.com/stueken/FSND-P5_Linux-Server-Configuration)
 	
 		Open the timezone selection dialog:
 		$ sudo dpkg-reconfigure tzdata
