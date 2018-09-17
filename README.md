@@ -272,9 +272,9 @@ __Helpful Resource__:
 4. Be ready to Start Application
 
 		a. Restart configuration
-		     $ sudo apache2ctl restart restart configuration
+		     $ sudo apache2ctl restart
 		b. Verify ErrorLog for troubleshooting when App do not work
-		     sudo cat /var/log/apache2/error.log
+		     $ sudo cat /var/log/apache2/error.log
 
 5. Do not be discourage when get stuck it is an oppurtunity to learn.
 
