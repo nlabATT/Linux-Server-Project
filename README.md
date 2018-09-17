@@ -4,10 +4,13 @@
 You will take a baseline installation of a Linux server and prepare it to host your web applications. You will secure your server from a number of attack vectors, install and configure a database server, and deploy one of your existing web applications onto it.
 
 __IP Address__ : 34.235.148.10
+
 __ssh Port__ : 2200
+
 __URL__: 34.235.148.10.xip.io
 
 ## Step by Step Walkthrough in completing this project:
+
 __Sources and References:__
 
 [Amazon Web Services](https://aws.amazon.com/)
@@ -29,21 +32,21 @@ __Sources and References:__
 
 1. To start you'll need a Linux server instance. __Udacity__ recommend using ___AWS Lightsail___. If you don't already have an Amazon Web Services account, you'll need to set one up.
 	
-  Start a new Ubuntu Linux server instance on Amazon Lightsail
-
 	a. __Log in__! First, log in to Lightsail. If you don't already have an Amazon Web Services account, you'll be prompted to 			create one.
 
 	b.__Create an instance__. A Lightsail instance is a Linux server running on a virtual machine inside an Amazon datacenter.
-
+	
 	c. Choose an instance image: __Ubuntu__ For this project, you'll want a plain __Ubuntu Linux image__. There are two settings to 		make here. First, choose "__OS Only__". Second, choose __Ubuntu__ as the operating system.
-
+	
 	d. Choose your __instance plan__. For this project, I pick the lowest one to get free-tier access.
-
+	
 	e. Give your __instance a name__. Every instance needs a unique name.
-
+	
 	f. Wait for it to start up. 
-	     While your instance is _starting up_, Lightsail shows you a grayed-out display.
-	     Once your instance is _running_, the display gets brighter.
+	
+	While your instance is _starting up_, Lightsail shows you a grayed-out display.
+
+	Once your instance is _running_, the display gets brighter.
 
 
 2. Secure and Set-up server.
